@@ -1,0 +1,201 @@
+body {
+    background-color: #2f3136;
+    color: white;
+}
+
+.icon-btn {
+    background-color: transparent;
+    /* Blue background */
+    border: none;
+    /* Remove borders */
+    color: white;
+    /* White text */
+    padding: 12px 16px;
+    /* Some padding */
+    font-size: 16px;
+    /* Set a font size */
+    cursor: pointer;
+    /* Mouse pointer on hover */
+    padding: 0px;
+}
+
+.p {
+    padding: 10px;
+}
+
+.todoname {
+    display: inline-block;
+    text-align: left;
+    font-size: 3vh;
+    width: auto;
+    margin: 0;
+}
+
+.tododesc {
+    display: inline-block;
+    text-align: left;
+    color: white;
+    font-size: 2vh;
+    width: auto;
+    margin: 0;
+    margin-left: 5px;
+}
+
+.del {
+    margin-left: 5px;
+    color: white;
+    display: inline-block;
+}
+
+.del-ico:hover {
+    color: #bc3c3c;
+}
+
+h1 {
+    text-align: center;
+    color: white;
+    margin: 25px 50px 50px 50px;
+    font-size: 9vmin;
+    font-weight: bold;
+}
+
+.topline {
+    color: white;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: inset;
+    border-width: 1px;
+}
+
+.new-btn {
+    position: fixed;
+    bottom: 10vh;
+    right: 10vh;
+    width: 5vw;
+    height: 5vw;
+    background-color: #40444b;
+    border-radius: 25px;
+    border: none;
+}
+
+.new-btn:hover {
+    background-color: #73AD21;
+}
+
+/* Change styles for cancel button and delete button on extra small screens */
+@media screen and (max-width:300px) {
+    .cancelbtn,
+    .submitbtn {
+        width: 100%;
+    }
+}
+
+/* The Modal Close Button (x) */
+.close {
+    position: absolute;
+    right: 35px;
+    top: 15px;
+    font-size: 40px;
+    font-weight: bold;
+    color: #f1f1f1;
+}
+
+.close:hover,
+.close:focus {
+    color: #f44336;
+    cursor: pointer;
+}
+
+.cancelbtn:hover,
+.submitbtn:hover {
+    opacity: 1;
+}
+
+/* Float cancel and delete buttons and add an equal width */
+.cancelbtn,
+.submitbtn {
+    float: left;
+    width: 50%;
+    background-color: #04AA6D;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.9;
+}
+
+/* Add a color to the cancel button */
+.cancelbtn {
+    background-color: #ccc;
+    color: black;
+}
+
+/* Add a color to the delete button */
+.submitbtn {
+    background-color: #73AD21;
+}
+
+/* Add padding and center-align text to the container */
+.container {
+    padding: 16px;
+    text-align: center;
+}
+
+/* The Modal (background) */
+.modal {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: #2f3136;
+    padding-top: 50px;
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #40444b;
+    margin: 5% auto 15% auto;
+    width: 80%;
+    /* Could be more or less,depending on screen size */
+}
+
+/* Clear floats */
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: none;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 25px
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
