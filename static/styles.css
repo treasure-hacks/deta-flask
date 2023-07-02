@@ -49,7 +49,8 @@ h2 {
     padding: 10px 16px;
 }
 .todo-name { font-size: 3vh; }
-.del { margin-left: auto; color: white; }
+.todo-desc { margin-right: auto; }
+.del { color: white; }
 
 /* Create To-do Modal */
 .close {
