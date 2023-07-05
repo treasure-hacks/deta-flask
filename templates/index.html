@@ -16,6 +16,13 @@
 
     <div id="task-list">
         <!-- We will be rendering each to-do item here -->
+        {% for todo in todos %}
+            <div class="todo">
+                <b class="todo-name">{{ todo.key }}</b>
+                <span class="todo-desc">{{ todo.desc }}</span>
+                <a class="del" href="/delete?todo={{ todo.key }}"><i class="fa-sharp fa-solid fa-trash del-ico"></i></a>
+            </div>
+        {% endfor %}
     </div>
 
     <button class="new-btn" onclick="this.nextElementSibling.showModal()">+</button>
@@ -24,6 +31,14 @@
         <span onclick="this.parentNode.close()" class="close" title="Close Modal">&times;</span>
         <h2>New To-do</h2><br>
         <!-- Add the form to create a to-do here -->
+        <form class="create-form" action="/create" method="post">
+            <input name="name" placeholder="Todo Name" type="text" required><br>
+            <textarea name="desc" placeholder="Description" rows="6" required></textarea><br>
+            <div class="actions">
+                <button type="button" onclick="document.getElementById('new-modal').close()">Cancel</button>
+                <input type="submit" value="Submit">
+            </div>
+        </form>
     </dialog>
 </body>
 </html>
