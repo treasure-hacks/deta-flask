@@ -7,13 +7,6 @@
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 
-    <!-- jQuery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-
-    <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-
     <!-- Stylesheet -->
     <link rel="stylesheet" href="/static/styles.css">
 </head>
@@ -21,16 +14,16 @@
     <h1>Simple Todo</h1>
     <hr class="topline">
 
-    <ol class="container-fluid">
-
-    </ol>
-
-    <button class="new-btn" onclick="document.getElementById('new-modal').style.display='block'"><i style="color: #73AD21;" class="fa-solid fa-plus fa-2xl"></i></button>
-
-    <div id="new-modal" class="modal">
-        <span onclick="document.getElementById('new-modal').style.display='none'" class="close" title="Close Modal">&times;</span>
-
+    <div id="task-list">
+        <!-- We will be rendering each to-do item here -->
     </div>
 
-    <script src="/static/script.js"></script>
+    <button class="new-btn" onclick="this.nextElementSibling.showModal()">+</button>
+
+    <dialog id="new-modal" class="popup">
+        <span onclick="this.parentNode.close()" class="close" title="Close Modal">&times;</span>
+        <h2>New To-do</h2><br>
+        <!-- Add the form to create a to-do here -->
+    </dialog>
 </body>
+</html>
