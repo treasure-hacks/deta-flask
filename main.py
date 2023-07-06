@@ -1,3 +1,5 @@
+import os
+import sys
 from flask import Flask, redirect, render_template, request
 from deta import Base
 
@@ -45,3 +47,8 @@ def delete():
         return redirect("/")
     except:
         return 500
+
+flags = [a for a in sys.argv[1:] if a.startswith('--')]
+if __name__ == '__main__' and '--dev' in flags:
+    # Run the app using Flask server in development only
+    app.run(port = os.environ.get('PORT', 5000))

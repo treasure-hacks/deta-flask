@@ -5,4 +5,15 @@ micros:
     src: ./
     engine: python3.9
     primary: true
-    dev: flask --app main.py run
+    dev: python3 main.py --dev
+    presets:
+      env:
+        - name: DISCORD_WEBHOOK_URL
+          description: The webhook URL of the Discord channel you want to post to
+          default: https://discord.com/api/webhooks/CHANNEL/TOKEN
+    actions:
+      - id: "notify-user"
+        name: "Notify user"
+        description: "Sends alerts for tasks to complete today"
+        trigger: "schedule"
+        default_interval: "0 8 * * *"
