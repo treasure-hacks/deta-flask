@@ -1,5 +1,5 @@
 from flask import Flask, redirect, render_template, request
-from deta import Base
+from deta import Base, Drive
 
 # Configure application
 app = Flask(__name__)
@@ -8,6 +8,7 @@ app = Flask(__name__)
 app.config["TEMPLATES_AUTO_RELOAD"] = True
 
 todos = Base("todos")
+files = Drive("files")
 
 
 # Ensure responses aren't cached
@@ -28,9 +29,15 @@ def index():
 
 @app.route("/create", methods=["GET", "POST"])
 def create():
-    if request.form.get("name") and request.form.get("desc"):
+    name = request.form.get("name")
+    desc = request.form.get("desc")
+    if name and desc:
+        file = request.files.get("file")
+        item = {"desc": desc}
         try:
-            todos.put({"desc": request.form.get("desc")}, request.form.get("name"))
+            if file:
+                item["file"] = files.put(f"{name} - {file.filename}", file)
+            todos.put(item, name)
         except:
             return 500
         return redirect("/")

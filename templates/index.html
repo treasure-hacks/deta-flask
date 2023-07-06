@@ -31,14 +31,24 @@
         <span onclick="this.parentNode.close()" class="close" title="Close Modal">&times;</span>
         <h2>New To-do</h2><br>
         <!-- Add the form to create a to-do here -->
-        <form class="create-form" action="/create" method="post">
+        <form class="create-form" action="/create" method="post" enctype="multipart/form-data">
             <input name="name" placeholder="Todo Name" type="text" required><br>
-            <textarea name="desc" placeholder="Description" rows="6" required></textarea><br>
+            <textarea name="desc" placeholder="Description" rows="6" required style="resize: vertical;"></textarea><br>
+            <input type="file" id="file" name="file"><br>
             <div class="actions">
                 <button type="button" onclick="document.getElementById('new-modal').close()">Cancel</button>
                 <input type="submit" value="Submit">
             </div>
         </form>
     </dialog>
+
+    <script>
+        // fix browser bug where cancel file input closes dialog
+        const modal = document.querySelector('.popup')
+        let closedOnCancel = false
+        modal.onopen = () => closedOnCancel = false
+        modal.oncancel = e => { closedOnCancel = e.target.tagName === 'INPUT' }
+        modal.onclose = () => closedOnCancel && modal.showModal() || (closedOnCancel = false)
+    </script>
 </body>
 </html>
