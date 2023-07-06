@@ -2,7 +2,7 @@
 
 A Todo List Application Built in Python using Flask.
 
-**BASELINE**: This branch contains the basic working code that you should be able to create from following our workshop. This branch lets you create, render, and delete tasks.
+**DATE-NOTIFIER**: This branch builds off of the code in the `baseline` branch. It contains all features in the baseline, and on top of that, notifies you of tasks due on a certain day.
 
 ## Setting Up Locally
 
