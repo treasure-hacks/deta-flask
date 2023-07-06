@@ -50,18 +50,31 @@ h2 {
 }
 .todo-name { font-size: 3vh; }
 .todo-desc { margin-right: auto; }
-.del { color: white; }
+.edit, .del { color: white; cursor: pointer; }
+.edit i, .del i { pointer-events: none }
 
 /* Create To-do Modal */
 .close {
     position: absolute;
     right: 35px;
     top: 15px;
+    margin: 0;
+    padding: 0;
     font-size: 40px;
     font-weight: bold;
     cursor: pointer;
+    background: none;
+    border: none;
+    color: inherit;
 }
-.close:hover, .close:focus, .del-ico:hover { color: #f44336; }
+.close[disabled] {
+    opacity: 0.7;
+    cursor: default;
+}
+.close:hover:not([disabled]),
+.close:focus:not([disabled]),
+.del:hover { color: #f44336; }
+.edit:hover { color: #098ac7; }
 
 dialog::backdrop {
     background-color: #6668;

@@ -16,6 +16,14 @@
     <h1>Simple Todo</h1>
     <hr class="topline">
 
+    <template id="todo-template">
+        <div class="todo" id="t-">
+            <b class="todo-name"></b>
+            <span class="todo-desc"></span>
+            <a class="edit" data-key><i class="fa-sharp fa-solid fa-pencil del-ico"></i></a>
+            <a class="del" data-key><i class="fa-sharp fa-solid fa-trash del-ico"></i></a>
+        </div>
+    </template>
     <div id="task-list">
         <!-- We will be rendering each to-do item here -->
         {% for todo in todos %}

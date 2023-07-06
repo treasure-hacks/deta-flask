@@ -19,21 +19,42 @@ def after_request(response):
     return response
 
 
-@app.route("/", methods=["GET", "POST"])
+@app.route("/", methods = ["GET", "POST"])
 def index():
     """Home Page"""
 
     return render_template("index.html", todos=todos.fetch().items)
 
 
-@app.route("/create", methods=["GET", "POST"])
+@app.route('/todos', methods = ['GET'])
+def get_tasks():
+    tasks = todos.fetch().items
+    return tasks
+
+
+@app.route("/create", methods = ["GET", "POST"])
 def create():
-    if request.form.get("name") and request.form.get("desc"):
+    if request.json.get("name") and request.json.get("desc"):
         try:
-            todos.put({"desc": request.form.get("desc")}, request.form.get("name"))
+            item = todos.put({"desc": request.json.get("desc")}, request.json.get("name"))
+            return item
         except:
             return 500
-        return redirect("/")
+    else:
+        return 400
+
+
+@app.route("/edit", methods = ["POST"])
+def edit():
+    name = request.json.get("name")
+    desc = request.json.get("desc")
+    old = request.json.get("old_key")
+    if name and desc:
+        try:
+            if name != old: todos.delete(old)
+            return todos.put({"key": name, "desc": desc})
+        except:
+            return 500
     else:
         return 400
 
