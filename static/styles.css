@@ -48,6 +48,10 @@ h2 {
     gap: 10px;
     padding: 10px 16px;
 }
+.todo.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+}
 .todo-name { font-size: 3vh; }
 .todo-desc { margin-right: auto; }
 .edit, .del { color: white; cursor: pointer; }

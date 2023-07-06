@@ -62,6 +62,16 @@ function editTask(key) {
     dialog.showModal()
 }
 
+async function deleteTask(key) {
+    const todo = document.getElementById('t-' + key)
+    todo.classList.add('disabled')
+    await fetch('/delete?todo=' + encodeURIComponent(key), {
+        method: 'DELETE'
+    })
+    await refreshTodos()
+}
+
 document.body.addEventListener('click', e => {
+    if (e.target.matches('.del')) return deleteTask(e.target.dataset.key)
     if (e.target.matches('.edit')) return editTask(e.target.dataset.key)
 })

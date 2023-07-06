@@ -59,10 +59,10 @@ def edit():
         return 400
 
 
-@app.route("/delete", methods=["GET"])
+@app.route("/delete", methods = ["DELETE"])
 def delete():
     try:
         todos.delete(request.args.get("todo"))
-        return redirect("/")
+        return {}
     except:
         return 500
