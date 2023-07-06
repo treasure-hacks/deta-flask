@@ -1,5 +1,7 @@
 import os
 import sys
+import re
+
 from flask import Flask, redirect, render_template, request
 from deta import Base
 
@@ -28,11 +30,15 @@ def index():
     return render_template("index.html", todos=todos.fetch().items)
 
 
-@app.route("/create", methods=["GET", "POST"])
+@app.route("/create", methods = ["GET", "POST"])
 def create():
-    if request.form.get("name") and request.form.get("desc"):
+    name = request.form.get("name")
+    desc = request.form.get('desc')
+    date = request.form.get('date')
+
+    if name and desc and re.match(r'^\d{4}-\d{2}-\d{2}', date):
         try:
-            todos.put({"desc": request.form.get("desc")}, request.form.get("name"))
+            todos.put({'desc': desc, 'date': date}, name)
         except:
             return 500
         return redirect("/")

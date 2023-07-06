@@ -20,6 +20,7 @@
             <div class="todo">
                 <b class="todo-name">{{ todo.key }}</b>
                 <span class="todo-desc">{{ todo.desc }}</span>
+                <span class="todo-date">{{ todo.date }}</span>
                 <a class="del" href="/delete?todo={{ todo.key }}"><i class="fa-sharp fa-solid fa-trash del-ico"></i></a>
             </div>
         {% endfor %}
@@ -33,6 +34,7 @@
         <!-- Add the form to create a to-do here -->
         <form class="create-form" action="/create" method="post">
             <input name="name" placeholder="Todo Name" type="text" required><br>
+            <input name="date" placeholder="Today" type="date" required><br>
             <textarea name="desc" placeholder="Description" rows="6" required></textarea><br>
             <div class="actions">
                 <button type="button" onclick="document.getElementById('new-modal').close()">Cancel</button>
