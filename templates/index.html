@@ -20,6 +20,9 @@
             <div class="todo">
                 <b class="todo-name">{{ todo.key }}</b>
                 <span class="todo-desc">{{ todo.desc }}</span>
+                {% if todo.file %}
+                <a href="/attachments?task={{ todo.file }}"><i class="fa-solid fa-paperclip"></i></a>
+                {% endif %}
                 <a class="del" href="/delete?todo={{ todo.key }}"><i class="fa-sharp fa-solid fa-trash del-ico"></i></a>
             </div>
         {% endfor %}

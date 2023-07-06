@@ -1,4 +1,4 @@
-from flask import Flask, redirect, render_template, request
+from flask import Flask, redirect, render_template, request, send_file
 from deta import Base, Drive
 
 # Configure application
@@ -48,7 +48,20 @@ def create():
 @app.route("/delete", methods=["GET"])
 def delete():
     try:
-        todos.delete(request.args.get("todo"))
+        todo_name = request.args.get("todo")
+        todo = todos.get(todo_name)
+        if todo.get("file"):
+            files.delete(todo.get("file"))
+        todos.delete(todo_name)
         return redirect("/")
+    except:
+        return 500
+
+
+@app.route("/attachments", methods=["GET"])
+def attachments():
+    try:
+        file = request.args.get("task")
+        return send_file(files.get(file), download_name=file)
     except:
         return 500
