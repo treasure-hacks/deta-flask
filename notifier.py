@@ -13,6 +13,9 @@ def get_tasks() -> list[dict]:
     last = True
     tasks = []
     while last and len(tasks) < 10:
+        # Since Deta Actions are in UTC time, you may need to fetch "tomorrow's tasks" if
+        # you are a day ahead when you want your notifications to be sent.
+        # tomorrow = datetime.date.today() + datetime.timedelta(1)
         response = todos.fetch({'date': datetime.date.today().isoformat()})
         tasks.extend(response.items)
         last = response.last
