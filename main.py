@@ -1,5 +1,6 @@
 import os
 import sys
+from notifier import notify_discord
 import re
 
 from flask import Flask, redirect, render_template, request
@@ -53,6 +54,17 @@ def delete():
         return redirect("/")
     except:
         return 500
+
+
+@app.route("/__space/v0/actions", methods = ["POST"])
+def actions():
+    event: dict = request.json.get('event')
+    try:
+        if event['id']: notify_discord()
+        return {'success': True}
+    except:
+        return 500
+
 
 flags = [a for a in sys.argv[1:] if a.startswith('--')]
 if __name__ == '__main__' and '--dev' in flags:
