@@ -9,6 +9,8 @@
 
     <!-- Stylesheet -->
     <link rel="stylesheet" href="/static/styles.css">
+
+    <script src="/static/script.js" defer></script>
 </head>
 <body>
     <h1>Simple Todo</h1>
@@ -17,28 +19,30 @@
     <div id="task-list">
         <!-- We will be rendering each to-do item here -->
         {% for todo in todos %}
-            <div class="todo">
+            <div class="todo" id="t-{{ todo.key }}">
                 <b class="todo-name">{{ todo.key }}</b>
                 <span class="todo-desc">{{ todo.desc }}</span>
-                <a class="del" href="/delete?todo={{ todo.key }}"><i class="fa-sharp fa-solid fa-trash del-ico"></i></a>
+                <a class="edit" data-key="{{ todo.key }}"><i class="fa-sharp fa-solid fa-pencil del-ico"></i></a>
+                <a class="del" data-key="{{ todo.key }}"><i class="fa-sharp fa-solid fa-trash del-ico"></i></a>
             </div>
         {% endfor %}
     </div>
 
-    <button class="new-btn" onclick="this.nextElementSibling.showModal()">+</button>
+    <button class="new-btn" onclick="createTask()">+</button>
 
     <dialog id="new-modal" class="popup">
-        <span onclick="this.parentNode.close()" class="close" title="Close Modal">&times;</span>
         <h2>New To-do</h2><br>
         <!-- Add the form to create a to-do here -->
         <form class="create-form" action="/create" method="post">
+            <input name="old_key" hidden type="text">
             <input name="name" placeholder="Todo Name" type="text" required><br>
             <textarea name="desc" placeholder="Description" rows="6" required></textarea><br>
             <div class="actions">
                 <button type="button" onclick="document.getElementById('new-modal').close()">Cancel</button>
-                <input type="submit" value="Submit">
+                <input type="submit" name="submit" value="Submit">
             </div>
         </form>
+        <button onclick="dialog.close()" class="close" title="Close Modal">&times;</button>
     </dialog>
 </body>
 </html>
